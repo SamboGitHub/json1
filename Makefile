@@ -2,7 +2,7 @@ SRCS=$(notdir $(wildcard src/*))
 OBJS=$(addprefix obj/,$(addsuffix .o,$(basename $(SRCS))))
 
 # add -I includerfolder1 -I includefolder2...
-CFLAGS+=-I include
+CFLAGS+=-I include -I /usr/include/nlohmann
 
 vpath %.cc src
 
