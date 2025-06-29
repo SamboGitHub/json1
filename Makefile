@@ -1,0 +1,19 @@
+SRCS=$(notdir $(wildcard src/*))
+OBJS=$(addprefix obj/,$(addsuffix .o,$(basename $(SRCS))))
+
+# add -I includerfolder1 -I includefolder2...
+CFLAGS+=-I include
+
+vpath %.cc src
+
+obj/%.o:%.cc
+	$(CXX) -c -o $@ $(CXXFLAGS) $(CFLAGS) $^
+
+# change the program name before the colon
+# add a -l libraryname -l libraryname2 below
+jsontest:$(OBJS)
+	g++ -o $@ $(OBJS)
+
+#change the prgram name below
+clean:
+	rm -f jsontest obj/*
