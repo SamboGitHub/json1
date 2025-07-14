@@ -82,7 +82,6 @@ std::cout << "Parse the Array \n";
              << "\n";
  }
 
- //json detail = json::parse(valstring);
 // json detail = json::parse(result_array);
 std::cout << "Done Parse the Parse \n";
 
@@ -101,8 +100,6 @@ std::cout << "Done Parse the Parse \n";
 //         std::cout << "\n";
 //         valstring = that.value();
 //     }
-//     //   dumps all
-//     //    std::cout << it.key() << " : " << it.value() << "\n";
 // }
 
 
