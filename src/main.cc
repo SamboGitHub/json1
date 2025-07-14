@@ -65,7 +65,7 @@ std::cout << "Parse the Array \n";
 //   dumps all
 //    std::cout << it.key() << " : " << it.value() << "\n";
 std::cout << result_array.dump() << "\n \n \n"; 
-std::cout << result_array[1] << "\n"; 
+// std::cout << result_array[1] << "\n"; 
 
 json detail = json::parse(valstring);
 // json detail = json::parse(result_array);
