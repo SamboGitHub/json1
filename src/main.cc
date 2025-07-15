@@ -20,6 +20,8 @@ std::ifstream f("thefile.json");
 std::string keystring = "";
 std::string valstring = "";
 
+double value = 0.0;
+
 json result_array = json::array();
 
     printf("Begin First Parsing\n");
@@ -82,36 +84,34 @@ std::cout << "Parse the Array \n";
      
    std::cout << "; Type: " << (*it)
              << "\n";
- }
+    }
 
    if (it->is_object()){
-    
-   std::cout << "name: " << (*it)["Parameter"]["name"]
-             << ";  id: " << (*it)["Parameter"]["id"]
-             << "\n";
- }
- }
-// json detail = json::parse(result_array);
-std::cout << "Done Parse the Parse \n";
 
-// for (json::iterator that = detail.begin(); that != detail.end(); ++that)
-// {
+        std::cout << "About to Type Check" << "\n"; 
 
-//     std::cout << " - " ;
-//     keystring = that.key();
-
-//     if(keystring.find("result") == 0)
-//     {
+        if((*it)["Parameter"]["value"].is_number()){
         
-//         std::cout << that.key();
-//         // std::cout << " : ";
-//         std::cout << that.value();
-//         std::cout << "\n";
-//         valstring = that.value();
-//     }
-// }
+            std::cout << "Set Numeric Value" << "\n";
+            value = ((*it)["Parameter"]["value"].get<nlohmann::json::number_float_t>());
+            std::cout << "Numeric Value Set" << "\n";
+        
+        }
+     
+     
+    std::cout << ";      group: " << (*it)["Parameter"]["group"] << "\n"
+                << "name: " << (*it)["Parameter"]["name"] << "\n"
+                << ";         id: " << (*it)["Parameter"]["id"] << "\n"
+                << ";      value: " << (*it)["Parameter"]["value"]    << "\n"
+                << ";      value2: " << value << "\n"
+                << ";  std_value: " << (*it)["Parameter"]["std_value"] << "\n"
+                << ";      upper: " << (*it)["Parameter"]["upper"] << "\n"
+                << ";      lower: " << (*it)["Parameter"]["lower"] << "\n"
+                << ";value_names: " << (*it)["Parameter"]["value_names"] << "\n"
+                << "\n";
+    }
 
-
+ }
 
 
 printf("End Parsing\n");
