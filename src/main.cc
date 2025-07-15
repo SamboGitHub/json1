@@ -68,20 +68,29 @@ std::cout << "Parse the Array \n";
 // std::cout << result_array[1] << "\n"; 
 // 
 
+
+//  DUMP BELOW
 // the (4) makes it pretty-print.
- std::cout << result_array.dump(4) << "\n";
+//  std::cout << result_array.dump(4) << "\n";
 
  // dump the ids
  std::cout << "IDs" << "\n";
  for (json::iterator it = result_array.begin(); it != result_array.end(); ++it) {
    // skip anything that isn't an object
-   if (!it->is_object())
-     continue;
+
+   if (it->is_string()){
+     
+   std::cout << "; Type: " << (*it)
+             << "\n";
+ }
+
+   if (it->is_object()){
+    
    std::cout << "name: " << (*it)["Parameter"]["name"]
              << ";  id: " << (*it)["Parameter"]["id"]
              << "\n";
  }
-
+ }
 // json detail = json::parse(result_array);
 std::cout << "Done Parse the Parse \n";
 
