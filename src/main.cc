@@ -87,22 +87,17 @@ std::cout << "Parse the Array \n";
     }
 
    if (it->is_object()){
-
-        std::cout << "About to Type Check" << "\n"; 
-
-        if((*it)["Parameter"]["value"].is_number()){
         
             std::cout << "Set Numeric Value" << "\n";
-            value = ((*it)["Parameter"]["value"].get<nlohmann::json::number_float_t>());
-            std::cout << "Numeric Value Set" << "\n";
-        
-        }
-     
-     
-    std::cout << ";      group: " << (*it)["Parameter"]["group"] << "\n"
+            if((*it)["value"].is_number()){
+                std::cout << "Set Numeric Value" << "\n";
+                value = ((*it)["value"].get<nlohmann::json::number_float_t>());
+                std::cout << "Numeric Value Set" << "\n";
+            }    
+        std::cout << ";      group: " << (*it)["Parameter"]["group"] << "\n"
                 << "name: " << (*it)["Parameter"]["name"] << "\n"
                 << ";         id: " << (*it)["Parameter"]["id"] << "\n"
-                << ";      value: " << (*it)["Parameter"]["value"]    << "\n"
+                << ";      value: " << (*it)["value"]    << "\n"
                 << ";      value2: " << value << "\n"
                 << ";  std_value: " << (*it)["Parameter"]["std_value"] << "\n"
                 << ";      upper: " << (*it)["Parameter"]["upper"] << "\n"
@@ -110,95 +105,8 @@ std::cout << "Parse the Array \n";
                 << ";value_names: " << (*it)["Parameter"]["value_names"] << "\n"
                 << "\n";
     }
-
+    value = 0;
  }
-
 
 printf("End Parsing\n");
 }
-
-
-// STL-like access
-// We designed the JSON class to behave just like an STL container. In fact, it satisfies the ReversibleContainer requirement.
-
-// // create an array using push_back
-// json j;
-// j.push_back("foo");
-// j.push_back(1);
-// j.push_back(true);
-
-// // also use emplace_back
-// j.emplace_back(1.78);
-
-// // iterate the array
-// for (json::iterator it = j.begin(); it != j.end(); ++it) {
-//   std::cout << *it << '\n';
-// }
-
-// // range-based for
-// for (auto& element : j) {
-//   std::cout << element << '\n';
-// }
-
-// // getter/setter
-// const auto tmp = j[0].template get<std::string>();
-// j[1] = 42;
-// bool foo = j.at(2);
-
-// // comparison
-// j == R"(["foo", 1, true, 1.78])"_json;  // true
-
-// // other stuff
-// j.size();     // 4 entries
-// j.empty();    // false
-// j.type();     // json::value_t::array
-// j.clear();    // the array is empty again
-
-// // convenience type checkers
-// j.is_null();
-// j.is_boolean();
-// j.is_number();
-// j.is_object();
-// j.is_array();
-// j.is_string();
-
-// // create an object
-// json o;
-// o["foo"] = 23;
-// o["bar"] = false;
-// o["baz"] = 3.141;
-
-// // also use emplace
-// o.emplace("weather", "sunny");
-
-// // special iterator member functions for objects
-// for (json::iterator it = o.begin(); it != o.end(); ++it) {
-//   std::cout << it.key() << " : " << it.value() << "\n";
-// }
-
-// // the same code as range for
-// for (auto& el : o.items()) {
-//   std::cout << el.key() << " : " << el.value() << "\n";
-// }
-
-// // even easier with structured bindings (C++17)
-// for (auto& [key, value] : o.items()) {
-//   std::cout << key << " : " << value << "\n";
-// }
-
-// // find an entry
-// if (o.contains("foo")) {
-//   // there is an entry with key "foo"
-// }
-
-// // or via find and an iterator
-// if (o.find("foo") != o.end()) {
-//   // there is an entry with key "foo"
-// }
-
-// // or simpler using count()
-// int foo_present = o.count("foo"); // 1
-// int fob_present = o.count("fob"); // 0
-
-// // delete an entry
-// o.erase("foo");
