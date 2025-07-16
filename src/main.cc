@@ -78,7 +78,6 @@ for (json::iterator it = data.begin(); it != data.end(); ++it)
    if (it->is_object()){
 
     // clear everything
-    parmtype = "";
     id = "";
     name = "";
     group = "";
