@@ -25,7 +25,7 @@ json result_array = json::array();
 
 
 // Start to define the class structure
-std::string ParmType = "";
+std::string parmtype = "";
 std::string id = "";
 std::string name = "";
 std::string group = "";
@@ -67,33 +67,120 @@ for (json::iterator it = data.begin(); it != data.end(); ++it)
    // skip anything that isn't an object
 
    if (it->is_string()){
-     
-   std::cout << "; Type: " << (*it)
-             << "\n";
+   
+    parmtype = (*it);
+    // std::cout << "; parmtype: " << (*it)
+    // std::cout << "; parmtype: " << parmtype
+            //  << "\n";
+    it++;
     }
 
    if (it->is_object()){
-        
 
-            if((*it)["value"].is_number()){
-                value = ((*it)["value"].get<nlohmann::json::number_float_t>());
-
-            }    
-        std::cout << ";      group: " << (*it)["Parameter"]["group"] << "\n"
-                << "name: " << (*it)["Parameter"]["name"] << "\n"
-                << ";         id: " << (*it)["Parameter"]["id"] << "\n"
-                << ";      value: " << (*it)["value"]    << "\n"
-                << ";      value2: " << value << "\n"
-                << ";  std_value: " << (*it)["Parameter"]["std_value"] << "\n"
-                << ";      upper: " << (*it)["Parameter"]["upper"] << "\n"
-                << ";      lower: " << (*it)["Parameter"]["lower"] << "\n"
-                << ";value_names: " << (*it)["Parameter"]["value_names"] << "\n"
-                << "\n";
-    }
+    // clear everything
+    parmtype = "";
+    id = "";
+    name = "";
+    group = "";
+    desc = "";
+    v_type = 0;
+    c_type = 0;
+    d_flags = 0;
     value = 0;
+    std_value = 0;
+    do_not_save = 0;        //Bool
+    non_controllable = 0;   //Int
+    lower = 0;            //Int and Float
+    upper = 0;            //Int and Float
+    step = 0;             //Float
+
+    // load if valid values
+    id = "";
+    name = "";
+    group = "";
+    desc = "";
+
+    if((*it)["Parameter"]["id"].is_string()){
+        id = ((*it)["Parameter"]["id"].get<nlohmann::json::string_t>());
+    } 
+    if((*it)["Parameter"]["name"].is_string()){
+        name = ((*it)["Parameter"]["name"].get<nlohmann::json::string_t>());
+    } 
+        if((*it)["Parameter"]["group"].is_string()){
+        group = ((*it)["Parameter"]["group"].get<nlohmann::json::string_t>());
+    } 
+        if((*it)["Parameter"]["desc"].is_string()){
+        desc = ((*it)["Parameter"]["desc"].get<nlohmann::json::string_t>());
+    } 
+    if((*it)["v_type"].is_number()){
+        v_type = ((*it)["v_type"].get<nlohmann::json::number_integer_t>());
+    } 
+    if((*it)["c_type"].is_number()){
+        c_type = ((*it)["c_type"].get<nlohmann::json::number_integer_t>());
+    } 
+    if((*it)["d_flags"].is_number()){
+        d_flags = ((*it)["d_flags"].get<nlohmann::json::number_integer_t>());
+    } 
+    if((*it)["value"].is_number()){
+        value = ((*it)["value"].get<nlohmann::json::number_float_t>());
+    }
+    if((*it)["std_value"].is_number()){
+        std_value = ((*it)["value"].get<nlohmann::json::number_float_t>());
+    }  
+    if((*it)["do_not_save"].is_number()){
+        do_not_save = ((*it)["do_not_save"].get<nlohmann::json::number_float_t>());
+    }  
+    if((*it)["non_controllable"].is_number()){
+        non_controllable = ((*it)["non_controllable"].get<nlohmann::json::number_integer_t>());
+    }  
+    if((*it)["lower"].is_number()){
+        lower = ((*it)["lower"].get<nlohmann::json::number_float_t>());
+    }  
+    if((*it)["upper"].is_number()){
+        upper = ((*it)["upper"].get<nlohmann::json::number_float_t>());
+    }  
+    if((*it)["step"].is_number()){
+        step = ((*it)["step"].get<nlohmann::json::number_float_t>());
+    }  
+
+    // dump the vars
+    std::cout   << ";      parmtype: " << parmtype << "\n"
+                << ";      id: " << id << "\n"
+                << ";      name: " << name << "\n"
+                << ";      group: " << group << "\n"
+                << ";      desc: " << desc << "\n"
+                << ";      v_type: " << v_type << "\n"
+                << ";      c_type: " << c_type << "\n"
+                << ";      d_flags: " << d_flags << "\n"
+                << ";      value: " << value << "\n"
+                << ";      std_value: " << std_value << "\n"
+                << ";      do_not_save: " << do_not_save << "\n"
+                << ";      non_controllable: " << non_controllable << "\n"
+                << ";      lower: " << lower << "\n"
+                << ";      upper: " << upper << "\n"
+                << ";      step: " << step << "\n"
+                << "\n";
+
+    value = 0;
+
+    }
+
  }
 printf("End Parsing\n");
 }
+
+
+        // std::cout << ";      group: " << (*it)["Parameter"]["group"] << "\n"  // old out
+        //         << "name: " << (*it)["Parameter"]["name"] << "\n"
+        //         << ";         id: " << (*it)["Parameter"]["id"] << "\n"
+        //         << ";      value: " << (*it)["value"]    << "\n"
+        //         << ";      value2: " << value << "\n"
+        //         << ";  std_value: " << (*it)["Parameter"]["std_value"] << "\n"
+        //         << ";      upper: " << (*it)["Parameter"]["upper"] << "\n"
+        //         << ";      lower: " << (*it)["Parameter"]["lower"] << "\n"
+        //         << ";value_names: " << (*it)["Parameter"]["value_names"] << "\n"
+        //         << "\n";
+
 
 
 // // Original working code below: 
