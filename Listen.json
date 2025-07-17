@@ -1,0 +1,1 @@
+{"jsonrpc": "2.0","method": "listen","params": ["preset","state","display","tuner","presetlist_changed","logger","midi","param","plugins_changed","misc","units_changed"]}

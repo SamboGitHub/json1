@@ -16,7 +16,7 @@ int main(int argc, char**argv)
 
 // ...
     printf("Begin Reading File\n");
-std::ifstream f("thefile.json");
+std::ifstream f("Params.json");
 
 // vars used in the code
 std::string keystring = "";
@@ -111,14 +111,14 @@ for (json::iterator it = data.begin(); it != data.end(); ++it)
         if((*it)["Parameter"]["desc"].is_string()){
         desc = ((*it)["Parameter"]["desc"].get<nlohmann::json::string_t>());
     } 
-    if((*it)["v_type"].is_number()){
-        v_type = ((*it)["v_type"].get<nlohmann::json::number_integer_t>());
+    if((*it)["Parameter"]["v_type"].is_number()){
+        v_type = ((*it)["Parameter"]["v_type"].get<nlohmann::json::number_integer_t>());
     } 
-    if((*it)["c_type"].is_number()){
-        c_type = ((*it)["c_type"].get<nlohmann::json::number_integer_t>());
+    if((*it)["Parameter"]["c_type"].is_number()){
+        c_type = ((*it)["Parameter"]["c_type"].get<nlohmann::json::number_integer_t>());
     } 
-    if((*it)["d_flags"].is_number()){
-        d_flags = ((*it)["d_flags"].get<nlohmann::json::number_integer_t>());
+    if((*it)["Parameter"]["d_flags"].is_number()){
+        d_flags = ((*it)["Parameter"]["d_flags"].get<nlohmann::json::number_integer_t>());
     } 
     if((*it)["value"].is_number()){
         value = ((*it)["value"].get<nlohmann::json::number_float_t>());
@@ -126,11 +126,11 @@ for (json::iterator it = data.begin(); it != data.end(); ++it)
     if((*it)["std_value"].is_number()){
         std_value = ((*it)["value"].get<nlohmann::json::number_float_t>());
     }  
-    if((*it)["do_not_save"].is_number()){
-        do_not_save = ((*it)["do_not_save"].get<nlohmann::json::number_float_t>());
+    if((*it)["Parameter"]["do_not_save"].is_number()){
+        do_not_save = ((*it)["Parameter"]["do_not_save"].get<nlohmann::json::number_float_t>());
     }  
-    if((*it)["non_controllable"].is_number()){
-        non_controllable = ((*it)["non_controllable"].get<nlohmann::json::number_integer_t>());
+    if((*it)["Parameter"]["non_controllable"].is_number()){
+        non_controllable = ((*it)["Parameter"]["non_controllable"].get<nlohmann::json::number_integer_t>());
     }  
     if((*it)["lower"].is_number()){
         lower = ((*it)["lower"].get<nlohmann::json::number_float_t>());
