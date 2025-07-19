@@ -11,7 +11,8 @@ enum test_type
 {
     parms,
     banks,
-    rackorder
+    rackorder,
+    all
 };
 
 int main(int argc, char **argv)
@@ -203,21 +204,21 @@ int main(int argc, char **argv)
                 }
 
                 // dump the vars
-                std::cout << ";      parmtype: " << parmtype << "\n"
-                          << ";      id: " << id << "\n"
-                          << ";      name: " << name << "\n"
-                          << ";      group: " << group << "\n"
-                          << ";      desc: " << desc << "\n"
-                          << ";      v_type: " << v_type << "\n"
-                          << ";      c_type: " << c_type << "\n"
-                          << ";      d_flags: " << d_flags << "\n"
-                          << ";      value: " << value << "\n"
-                          << ";      std_value: " << std_value << "\n"
-                          << ";      do_not_save: " << do_not_save << "\n"
-                          << ";      non_controllable: " << non_controllable << "\n"
-                          << ";      lower: " << lower << "\n"
-                          << ";      upper: " << upper << "\n"
-                          << ";      step: " << step << "\n"
+                std::cout << "      parmtype: " << parmtype << "\n"
+                          << "      id: " << id << "\n"
+                          << "      name: " << name << "\n"
+                          << "      group: " << group << "\n"
+                          << "      desc: " << desc << "\n"
+                          << "      v_type: " << v_type << "\n"
+                          << "      c_type: " << c_type << "\n"
+                          << "      d_flags: " << d_flags << "\n"
+                          << "      value: " << value << "\n"
+                          << "      std_value: " << std_value << "\n"
+                          << "      do_not_save: " << do_not_save << "\n"
+                          << "      non_controllable: " << non_controllable << "\n"
+                          << "      lower: " << lower << "\n"
+                          << "      upper: " << upper << "\n"
+                          << "      step: " << step << "\n"
                           << "\n";
 
                 value = 0;
