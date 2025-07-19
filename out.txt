@@ -1,43 +1,19 @@
 Begin Set Up
 Begin Reading Params File
 Begin Reading Banks File
-Begin First Bank Parsing
+Begin Reading racks File
+Begin First rack Parsing
 Begin Iterating Parse 1 
-id - jsonrpc - result - Bank Array Dump: [{"mutable":1,"name":"Scratchpad","presets":["basic","not so basic"],"type":"scratch"},{"mutable":0,"name":"brummer","presets":["default","flanger","echo","convolv","reverb","phaser","chorus","tremolo","vibe"],"type":"factory"},{"mutable":0,"name":"HarryVH","presets":["Solo Lead","COB SixPnd Rth","Distort Lead"],"type":"factory"},{"mutable":0,"name":"Sonnie_Tele","presets":["Bass_finger_clean","bass_finger_dist","bass_ugly_fuzz","clean_delay_chorus","clean_clean","brett_jcm","brett_flat_saw","crunch_picking","crunch_vintage_vox"],"type":"factory"}]
+id - jsonrpc - result - Rack Array Dump: ["ts9sim","ampstack","distortion2","oscilloscope","amp.tonestack","cab","flanger_mono_gx","dide","graphiceq","jconv_mono"]
 
-banks
-Bank Name: Scratchpad
-  Mutable: 1
-     Type: scratch
-           0: basic
-           1: not so basic
-Bank Name: brummer
-  Mutable: 0
-     Type: factory
-           0: default
-           1: flanger
-           2: echo
-           3: convolv
-           4: reverb
-           5: phaser
-           6: chorus
-           7: tremolo
-           8: vibe
-Bank Name: HarryVH
-  Mutable: 0
-     Type: factory
-           0: Solo Lead
-           1: COB SixPnd Rth
-           2: Distort Lead
-Bank Name: Sonnie_Tele
-  Mutable: 0
-     Type: factory
-           0: Bass_finger_clean
-           1: bass_finger_dist
-           2: bass_ugly_fuzz
-           3: clean_delay_chorus
-           4: clean_clean
-           5: brett_jcm
-           6: brett_flat_saw
-           7: crunch_picking
-           8: crunch_vintage_vox
+Racks
+0: ts9sim
+1: ampstack
+2: distortion2
+3: oscilloscope
+4: amp.tonestack
+5: cab
+6: flanger_mono_gx
+7: dide
+8: graphiceq
+9: jconv_mono
