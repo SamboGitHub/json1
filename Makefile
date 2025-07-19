@@ -14,6 +14,9 @@ obj/%.o:%.cc
 jsontest:$(OBJS)
 	g++ -o $@ $(OBJS)
 
+tcp-client : tcp-client.o
+	g++ -o $@ tcp-client.o
+
 #change the prgram name below
 clean:
 	rm -f jsontest obj/*
