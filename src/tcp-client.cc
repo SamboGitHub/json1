@@ -26,10 +26,18 @@ int main(int argc, char **argv)
     // at this point, socket.stream() is a std::iostream suitable for
     // writing to and reading from the connected socket.
 
+    // // demo; send an HTTP get and show the results.
+    // socket.stream() << "GET / HTTP/1.1\r\n"
+    //                 << "Host: localhost\r\n"
+    //                 << "\r\n";
+
     // demo; send an HTTP get and show the results.
-    socket.stream() << "GET / HTTP/1.1\r\n"
-                    << "Host: localhost\r\n"
-                    << "\r\n";
+
+std::string command = "{\"jsonrpc\": \"2.0\",\"id\": \"1\",\"method\": \"banks\",\"params\": []}";
+
+    socket.stream() << command << "\r\n";
+                    // << "Host: localhost\r\n"
+                    // << "\r\n";
   
     while (!socket.stream().eof()) {
       std::string line;
