@@ -23,9 +23,7 @@ void tcp4_socket_t::connect(ip4_address_t &to_address)
   if (fd >= 0)
     throw "tried to connect an already connected socket";
       
-  fd = socket(AF_INET, SOCK_STREAM, 0);
-
-  if (fd < 0) {
+  if ((fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
     std::stringstream error_message;
     error_message << "error creating socket: " << strerror(errno);
     throw error_message.str();
@@ -44,10 +42,10 @@ std::iostream &tcp4_socket_t::stream()
     throw("asked for stream from an unconnected socket");
 
   if (!socket_buffer)
-    socket_buffer.reset(new __gnu_cxx::stdio_filebuf<char>(fd, std::ios::in | std::ios::out));
+    socket_buffer = std::make_unique<__gnu_cxx::stdio_filebuf<char> >(fd, std::ios::in | std::ios::out);
 
   if (!iostream)
-    iostream.reset(new std::iostream(socket_buffer.get()));
+    iostream = std::make_unique<std::iostream>(socket_buffer.get());
 
   return *iostream.get();
 }
