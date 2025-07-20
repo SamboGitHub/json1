@@ -1,6 +1,8 @@
 #include "tcp4_socket.h"
 
 #include <unistd.h>
+#include <string.h>
+#include <sstream>
 #include "ip4_address.h"
 
 
@@ -33,11 +35,17 @@ void tcp4_socket_t::connect(ip4_address_t &to_address)
       
   fd = socket(AF_INET, SOCK_STREAM, 0);
 
-  if (fd < 0)
-    throw "error creating socket";
+  if (fd < 0) {
+    std::stringstream error_message;
+    error_message << "error creating socket: " << strerror(errno);
+    throw error_message.str();
+  }
 
-  if (::connect(fd, to_address.raw_address(), to_address.raw_address_size()) != 0)
-    throw "error connecting";
+  if (::connect(fd, to_address.raw_address(), to_address.raw_address_size()) != 0) {
+    std::stringstream error_message;
+    error_message << "error connecting: " << strerror(errno);
+    throw error_message.str();
+  }
 }
 
 std::iostream &tcp4_socket_t::stream()
