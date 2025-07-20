@@ -7,21 +7,11 @@
 
 
 tcp4_socket_t::tcp4_socket_t()
-  : socket_buffer(0),
-    iostream(0),
-    fd(-1)
+  : fd(-1)
 {}
 
 tcp4_socket_t::~tcp4_socket_t()
 {
-  if (iostream) {
-    delete iostream;
-    iostream = 0;
-  }
-  if (socket_buffer) {
-    delete socket_buffer;
-    socket_buffer = 0;
-  }
   if (fd >= 0) {
     ::close(fd);
     fd = -1;
@@ -54,10 +44,10 @@ std::iostream &tcp4_socket_t::stream()
     throw("asked for stream from an unconnected socket");
 
   if (!socket_buffer)
-    socket_buffer = new __gnu_cxx::stdio_filebuf<char>(fd, std::ios::in | std::ios::out);
+    socket_buffer.reset(new __gnu_cxx::stdio_filebuf<char>(fd, std::ios::in | std::ios::out));
 
   if (!iostream)
-    iostream = new std::iostream(socket_buffer);
+    iostream.reset(new std::iostream(socket_buffer.get()));
 
-  return *iostream;
+  return *iostream.get();
 }
