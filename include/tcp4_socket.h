@@ -15,8 +15,11 @@ public:
 
   void connect(ip4_address_t &to_address);
   std::iostream &stream();
+  const std::iostream &stream() const;
 
 private:
+  void ensure_stream_set_up();
+
   std::unique_ptr<__gnu_cxx::stdio_filebuf<char> > socket_buffer;
   std::unique_ptr<std::iostream> iostream;
   int fd;

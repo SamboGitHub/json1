@@ -38,6 +38,20 @@ void tcp4_socket_t::connect(ip4_address_t &to_address)
 
 std::iostream &tcp4_socket_t::stream()
 {
+  ensure_stream_set_up();
+  return *iostream.get();
+}
+
+
+const std::iostream &tcp4_socket_t::stream() const
+{
+  const_cast<tcp4_socket_t *>(this)->ensure_stream_set_up();
+  return *iostream.get();
+}
+
+
+void tcp4_socket_t::ensure_stream_set_up()
+{
   if (fd < 0)
     throw("asked for stream from an unconnected socket");
 
@@ -46,6 +60,4 @@ std::iostream &tcp4_socket_t::stream()
 
   if (!iostream)
     iostream = std::make_unique<std::iostream>(socket_buffer.get());
-
-  return *iostream.get();
 }
